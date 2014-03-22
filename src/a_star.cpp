@@ -223,11 +223,11 @@ AStar::Node::Node(const Node *p_old_node, int direction)
 
 }  // unnamed namespace
 
-std::deque<int> FindSolution(const GameGrid &grid)
+std::vector<std::deque<int>> FindSolution(const GameGrid &grid,
+                                          int solution_number)
 {
     if (!grid.HasSolution())  // no chance to find a solution
-        return std::deque<int>();  // return an empty deque
+        return std::vector<std::deque<int>>();  // return an empty deque
     AStar solver(grid);
-    solver.FindSolution();
-    return solver.solution();
+    // TODO: implement of searching multiple solutions
 }
