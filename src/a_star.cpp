@@ -193,8 +193,13 @@ void AStar::InsertToOpoen(Node *p_new_node)
 
 void AStar::GenerateSolution(const Node *p_goal_node)
 {
+    const Node *p_node = p_goal_node->parent;
+
     solution_.clear();  // make sure the deque is empty
-    const Node *p_node = p_goal_node;
+    solution_.push_front(p_goal_node->moved_direction);  // push last move
+    // delete the goal node, because it is not in open and close
+    delete p_goal_node;
+
     while (p_node->parent)  // while the node still has a parent (not the root)
     {
         solution_.push_front(p_node->moved_direction);
