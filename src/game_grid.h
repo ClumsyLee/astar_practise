@@ -8,7 +8,7 @@ class GameGrid
 {
  public:
     enum { kSize = 3 };
-    enum { Up, Down, Left, Right };
+    enum { Up, Left, Down, Right };
 
     explicit GameGrid(const int grid[][kSize]);
     bool HasSolution() const;

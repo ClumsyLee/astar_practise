@@ -80,8 +80,9 @@ bool AStar::FindSolution()
         closed_.push_front(best_node);  // add the node to closed
         for (int direction = 0; direction < 4; direction++)
         {
-            if (!best_node->grid.CanMove(direction))
-                continue;  // cannot move to this direction
+            if (!best_node->grid.CanMove(direction) ||
+                std::abs(best_node->moved_direction - direction) == 2)
+                continue;  // cannot move or just moved from there
 
             Node *p_new_node = new Node(best_node, direction);
 
