@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <deque>
+#include <vector>
 #include "game_grid.h"
 #include "a_star.h"
 
@@ -45,23 +46,37 @@ int main(int argc, char *argv[])
     fin.close();
     GameGrid grid(grid_buffer);
 
-    std::deque<int> solution = FindSolution(grid);
+    std::vector<std::deque<int>> solutions = FindSolution(grid);
 
-    if (solution.empty())
+    if (solutions.empty())
     {
         std::cout << "no solution\n";
         fout << "no solution\n";
         return 0;
     }
-    // else there is a solution
-    int step_count = solution.size();
-    std::cout << step_count << "\n\n";
-    fout << step_count << "\n\n";
-    for (int step = 0; step < step_count; step++)
+    // else there is at least one solution
+    // for every solution
+    int solution_count = 1;
+    for (auto solution : solutions)
     {
-        grid.Move(solution[step]);
-        std::cout << grid << std::endl;
-        fout << grid << std::endl;
+        // use a new grid to show
+        GameGrid showing_grid(grid);
+        int step_count = solution.size();
+
+        std::cout << "Solution " << solution_count << ":\n"
+                  << step_count << "\n\n";
+        fout << "Solution " << solution_count << ":\n"
+             << step_count << "\n\n";
+
+        for (int direction : solution)
+        {
+            showing_grid.Move(direction);
+            std::cout << grid << std::endl;
+            fout << grid << std::endl;
+        }
+
+        std::cout << "\n\n";
+        fout << "\n\n";
     }
 
     return 0;
