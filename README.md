@@ -1,4 +1,4 @@
-astar_practise
+Astar Practise
 ==============
 
 Homework that practise A* algorithm learned in class
@@ -10,4 +10,4 @@ This is a project created by a student, who is still learning C++, and using it 
 
 Also, it is actually a homework assigned in class.
 
-So, if you find any mistake, take it easy...remember I'm just a beginner in C++ (as well as other languages)
+So, if you find any mistake, take it easy... remember I'm just a beginner in C++ (as well as other languages)
